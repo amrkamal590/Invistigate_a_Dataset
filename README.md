@@ -7,7 +7,7 @@ Conclusions
 
 Introduction
 Dataset Description
-Tip: This data contains informations for more than 100k patient in brazil and is focused on the question of whether the patient show or not show on thier appointment based on some factors: 1- Gender (male or female) 2- Schedule day (The day of the appointment) 3- Age 4- Nighbourhood (where patient live) 5- Scholarship (Brasilian welfare) 6- Sms recieved
+This data contains informations for more than 100k patient in brazil and is focused on the question of whether the patient show or not show on thier appointment based on some factors: 1- Gender (male or female) 2- Schedule day (The day of the appointment) 3- Age 4- Nighbourhood (where patient live) 5- Scholarship (Brasilian welfare) 6- Sms recieved
 
 Question(s) for Analysis
 1- is the gender has a correlation with patient show !!
@@ -145,7 +145,6 @@ No-show           110527 non-null object
 dtypes: datetime64[ns, UTC](2), float64(1), int64(8), object(3)
 memory usage: 11.8+ MB
 Data Cleaning
-Tip: Make sure that you keep your reader informed on the steps that you are taking in your investigation. Follow every code cell, or every set of related code cells, with a markdown cell to describe to the reader what was found in the preceding cell(s). Try to make it so that the reader can then understand what they will be seeing in the following cell(s).
 
 #now we need to filter the data we will work on it so lets drop the columns we wont use.
 df.drop(labels=["PatientId", "AppointmentID", 'AppointmentDay', 'ScheduledDay'],axis=1, inplace=True)
@@ -237,7 +236,6 @@ Question No-2 :- is the age has a correlation with showing up??
 plt.figure(figsize=(16,2))
 plt.xticks(rotation=90)
 N = sns.boxplot(x=df.Age)
-png
 
 #This figure shows how many patients for each age.
 plt.figure(figsize=(16,4))
@@ -245,7 +243,6 @@ plt.xticks(rotation=90)
 ax = sns.countplot(x=df.Age)
 ax.set_title("No of appointments by age")
 plt.show()
-png
 
 The above graph shows a peak for the infants.
 
@@ -260,7 +257,6 @@ plt.xticks(rotation=90)
 ax = sns.countplot(x=df.Neighbourhood, hue=df.No_show)
 ax.set_title("Show/No_Show by Neighbourhood")
 plt.show()
-png
 
 From the graph we can see that the number of patients for some neighbourhood's is very high but nearly the same for the other neighbourhood's.
 
@@ -275,28 +271,6 @@ x_ticks_labels=['No Scholarship', 'Scholarship']
 ax.set_xticklabels(x_ticks_labels)
 plt.show()
 ---------------------------------------------------------------------------
-
-AttributeError                            Traceback (most recent call last)
-
-<ipython-input-24-4034eaa642d0> in <module>()
-----> 1 x = sns.countplot(x=df.Scholarship, hue=df.No-show, data=df)
-      2 ax.set_title("Show/No-Show for Scholarship")
-      3 x_ticks_labels=['No Scholarship', 'Scholarship']
-      4 ax.set_xticklabels(x_ticks_labels)
-      5 plt.show()
-
-
-/opt/conda/lib/python3.6/site-packages/pandas/core/generic.py in __getattr__(self, name)
-   5178             if self._info_axis._can_hold_identifiers_and_holds_name(name):
-   5179                 return self[name]
--> 5180             return object.__getattribute__(self, name)
-   5181 
-   5182     def __setattr__(self, name, value):
-
-
-AttributeError: 'DataFrame' object has no attribute 'No'
-From visualization we can see that there are around 100,000 patients without Scholarship and out of them around 80% have come for the visit. Out of the 10,800 patients with Scholarship around 75% of them have come for the visit. So, Scholarship feature could help us in determining if a patient will turn up for the visit after an appointment.
-
 Question No-5 :- if there is a certain disease has a correlation with patient show !!
 #lets see the patients diagnostic relation with show for appointment
 def disease(i):
